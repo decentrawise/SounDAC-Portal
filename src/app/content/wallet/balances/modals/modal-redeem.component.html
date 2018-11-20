@@ -18,13 +18,27 @@
 
   <div class="row my-1">
     <div class="col-12 my-2">
-      <mat-form-field>
-        <input matInput type="number" placeholder="Amount to Redeem" [max]="data.balance" tabindex="1" [(ngModel)]="inputAmount">
-      </mat-form-field>
-      <div *ngIf="inputAmount > data.balance" >
-          <strong [innerHtml]="'Amount to Redeem must be less than RYLT balance.'" style="color: red; font-weight: bold;"></strong>
-        </div>
+      <strong>More options to redeem into coming soon</strong>
     </div>
+    <div class="col-12 my-2">
+
+      <mat-form-field>
+        <mat-select placeholder="Redeem into" tabindex="1" value="SounDac">
+          <mat-option value="SounDac">SounDac</mat-option>
+          <mat-option value="Bitcoin" disabled>Bitcoin</mat-option>
+          <mat-option value="Debit Card" disabled>Debit Card</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="number" placeholder="Amount to Redeem" [max]="data.balance" tabindex="2" [(ngModel)]="inputAmount">
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="inputAmount > data.balance" >
+      <strong [innerHtml]="'Amount to Redeem must be less than RYLT balance.'" style="color: red; font-weight: bold;"></strong>
+    </div>
+
   </div>
 </div>
 
