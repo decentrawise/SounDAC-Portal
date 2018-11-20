@@ -16,7 +16,7 @@ export class ModalRedeemComponent {
   redeemTo = 'SounDac';
 
   save() {
-      this.dialogRef.close(this.inputAmount, this.redeemTo);
+      this.dialogRef.close(this.inputAmount);
   }
 
   close() {
