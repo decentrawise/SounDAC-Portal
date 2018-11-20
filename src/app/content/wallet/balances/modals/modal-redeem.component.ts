@@ -13,11 +13,12 @@ export class ModalRedeemComponent {
   ) {}
 
   inputAmount = '';
+  redeemTo = 'SounDac';
 
   save() {
-      this.dialogRef.close(this.inputAmount);
+      this.dialogRef.close(this.inputAmount, this.redeemTo);
   }
-  
+
   close() {
     this.dialogRef.close();
   }

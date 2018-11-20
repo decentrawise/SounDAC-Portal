@@ -23,7 +23,7 @@
     <div class="col-12 my-2">
 
       <mat-form-field>
-        <mat-select placeholder="Redeem into" tabindex="1" value="SounDac">
+        <mat-select placeholder="Redeem into" tabindex="1" [(ngModel)]="redeemTo">
           <mat-option value="SounDac">SounDac</mat-option>
           <mat-option value="Bitcoin" disabled>Bitcoin</mat-option>
           <mat-option value="Debit Card" disabled>Debit Card</mat-option>
