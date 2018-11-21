@@ -50,7 +50,7 @@ export class WalletPasswordComponent {
     this.ui.showLoading();
 
     const truePassword: string = this.auth.user.getPassword();
-    const password: string = this.passwordForm.get('password').value;
+    const password: string = this.passwordForm.get('password').value; // Need to validate length - min 6
     const newPassword: string = this.passwordForm.get('newPassword').value;
 
     let errors: boolean = false;
@@ -65,7 +65,7 @@ export class WalletPasswordComponent {
     if (!errors) {
 
       // Update the actual keys with the new password
-      this.auth.updateAccountKeys(this.username, password, newPassword, this.account.keys.ownerPubkey, this.account.keys.activePubkey, this.account.keys.basicPubkey, this.account.keys.memoPubkey)
+      this.auth.updateAccountKeys(this.username, password, newPassword)
         .then((response: boolean) => {
           this.ui.hideLoading();
           if (response) {

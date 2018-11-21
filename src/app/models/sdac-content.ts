@@ -6,10 +6,10 @@ export class SdacContent {
     uploaded: Date;
     title: string;
     url: string;
-    timesplayed: string
+    timesplayed: string;
 
     mapContent(data: any){
-        //console.log(data); // Blockchain Object - Uncomment to view all properties
+        // console.log(data); // Blockchain Object - Uncomment to view all properties
         this.owner = data.uploader;
         this.uploaded = new Date(data.created);
         this.title = data.track_meta.track_title;

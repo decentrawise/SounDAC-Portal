@@ -349,30 +349,32 @@ export class AuthService {
 
   }
 
-  updateAccountKeys(username, password, newPassword, ownerPubkey, activePubkey, basicPubkey, memoPubkey): Promise<void | boolean> {
-    const that = this;
-    const user = this.user;
-    const alert = this.alert;
-    this.setSocket();
+  updateAccountKeys(username, password, newPassword): Promise<void | boolean> {
+    return this.getPrivateKeys(username, newPassword).then((keys: SdacKeys) => {
+      const that = this;
+      const user = this.user;
+      const alert = this.alert;
+      this.setSocket();
 
-    return new Promise<boolean>(function (resolve, reject) {
-      
-      sdac.updateAccountKeys(username, password, ownerPubkey, activePubkey, basicPubkey, memoPubkey, (code, message) => {
-        if (code === 0) {
-          user.encryptPassword(newPassword);
-          that.userService.updateUser(user).subscribe(usr => {
-            alert.showCustomMessage('Password Changed!', 'Your password has been successfully changed.'); // TODO: Set messages in a resource file
-            resolve(true);
-          });
+      new Promise<boolean>(function (resolve, reject) {
+          sdac.updateAccountKeys(username, password, keys.ownerPubkey, keys.activePubkey, keys.basicPubkey, keys.memoPubkey, (code, message) => {
+          if (code === 0) {
+            user.encryptPassword(newPassword);
+            that.userService.updateUser(user).subscribe(usr => {
+              alert.showCustomMessage('Password Changed!', 'Your password has been successfully changed.'); // TODO: Set messages in a resource file
+              resolve(true);
+            });
 
-        } else {
-          reject(message);
-        }
+          } else {
+            reject(message);
+          }
 
+        });
+
+      }).catch((err) => {
+        this.alert.showErrorMessage('updateAccountKeys(): ' + err);
       });
 
-    }).catch((err) => {
-      this.alert.showErrorMessage('updateAccountKeys(): ' + err);
     });
 
   }
