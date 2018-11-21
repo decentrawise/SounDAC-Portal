@@ -29,6 +29,9 @@
                       <mat-error *ngIf="form.controls.username.hasError('required')">
                         <strong>Username is required</strong>
                       </mat-error>
+                      <mat-error *ngIf="form.controls.username.errors?.pattern">
+                        <strong>Username not valid</strong>
+                      </mat-error>
                     </mat-form-field>
 
                     <!--Email-->
@@ -47,6 +50,9 @@
                       <input matInput type="password" placeholder="Password" formControlName="password" required>
                       <mat-error *ngIf="form.controls.password.hasError('required')">
                         <strong>Password is required</strong>
+                      </mat-error>
+                      <mat-error *ngIf="form.controls.password.errors?.minLength">
+                        <strong>Password must be at least 6 characters</strong>
                       </mat-error>
                     </mat-form-field>
 

@@ -37,9 +37,9 @@ export class RegisterExternalComponent {
 
     // Build Form
     this.form = fb.group({
-      username: fb.control('', Validators.required),
+      username: fb.control('', [Validators.required, Validators.pattern('^[a-z0-9.-]{3,16}$')]),
       email: fb.control('', [Validators.required, Validators.email]),
-      password: fb.control('', Validators.required),
+      password: fb.control('', [Validators.required,  Validators.minLength(6)]),
       passwordConfirm: fb.control('', Validators.required),
       terms: fb.control(false, Validators.required),
       ackLoss: fb.control(false, Validators.required),

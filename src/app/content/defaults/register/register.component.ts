@@ -42,7 +42,7 @@ export class RegisterComponent {
     // Build Form
     this.form = fb.group({
   
-      username: fb.control('', [Validators.required, Validators.pattern('^[a-z0-9_.-]{3,16}$')]),
+      username: fb.control('', [Validators.required, Validators.pattern('^[a-z0-9.-]{3,16}$')]),
       email: fb.control('', [Validators.required, Validators.email]),
       password: fb.control('', [Validators.required,  Validators.minLength(6)]),
       passwordConfirm: fb.control('', Validators.required),
